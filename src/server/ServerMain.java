@@ -10,7 +10,7 @@ public class ServerMain {
 	public static void main(String[] args) throws Exception{
 		System.setProperty("javax.net.ssl.keyStore", "keystore");
 	    System.setProperty("javax.net.ssl.keyStorePassword", "eit060");
-	    
+	    //lite comments här lolol
 	    SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
 	    ServerSocket server = ssf.createServerSocket(7778);
 	    while (true) {
