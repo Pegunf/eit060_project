@@ -6,5 +6,6 @@ public class Client {
 		///EN KOMMENTAR
 		/////GAHHHHHHHHHHHHHHHHHHHHH
 		// Nu skall lolholm äta kebab pizza. No soup for me!
+		// OMMAMGADDD, tur det inte är rulle...
 	}
 }
