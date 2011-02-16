@@ -11,6 +11,7 @@ public class ServerMain {
 		System.setProperty("javax.net.ssl.keyStore", "keystore");
 	    System.setProperty("javax.net.ssl.keyStorePassword", "eit060");
 	    //lite comments här lolol
+	    //TEST COMMENT
 	    SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
 	    ServerSocket server = ssf.createServerSocket(7778);
 	    while (true) {
