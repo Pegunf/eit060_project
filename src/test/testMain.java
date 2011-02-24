@@ -6,7 +6,9 @@ import java.security.NoSuchAlgorithmException;
 
 import common.HashCrypt;
 import common.LoginManager;
+import common.PasswordInvalidException;
 import common.User;
+import common.UserNotFoundException;
 
 import server.CommandLibrary;
 import server.CommandTest;
@@ -26,20 +28,23 @@ public class testMain {
 		
 		LoginManager loginMan = new LoginManager("serverFiles/userdata.txt");
 	
-			try {
-				User user = loginMan.login("userpatient", "pass1");
+				User user;
+				try {
+					user = loginMan.login("userpatient", "pass1");
+					System.out.println(user.getId());
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (NoSuchAlgorithmException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					System.out.println("USER NOT FOUND!");
+				} catch (PasswordInvalidException e) {
+					System.out.println("PASSWORD INCORRECT!");
+				}
 				
-				System.out.println(user.getId());
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 	
 		
 		

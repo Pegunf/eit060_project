@@ -20,7 +20,7 @@ public class LoginManager {
 	}
 
 	
-	public User login(String username,String password) throws NoSuchAlgorithmException, NumberFormatException, IOException{
+	public User login(String username,String password) throws NoSuchAlgorithmException, NumberFormatException, IOException, UserNotFoundException,PasswordInvalidException{
 		BufferedReader rd = new BufferedReader(new FileReader(loginFile));
 		
 		String hashedPassword = HashCrypt.SHA1(salt + password);
@@ -28,16 +28,27 @@ public class LoginManager {
 		String line;
 		while ((line =rd.readLine()) != null){
 			String[] splitData = line.split(";");
-			if(splitData[1].equals(username) && splitData[2].equals(hashedPassword)){
+			if(splitData[1].equals(username)){
 				
+				if(splitData[2].equals(hashedPassword)){
 				/*Login successfully; Create new User*/
 				UserInformation userInfo = new UserInformation();
 				User newUser = new User(Integer.parseInt(splitData[0]),Integer.parseInt(splitData[3]),userInfo);
 				
-				return newUser;
+					return newUser;
+				}else{
+					throw new PasswordInvalidException();
+			
+				}
+			}else{
+				throw new UserNotFoundException();
+			
 			}
-		}
-		
+			
+			}
 		return null;
 	}
+		
+		
+	
 }
