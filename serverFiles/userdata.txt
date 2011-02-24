@@ -1,0 +1,2 @@
+0;userpatient;f585cf4f91d61eee0a1cef3e6494c44004d66cb6;0
+1;usernurse;00979fd6b751b66dc353eb5c96d7cdcd82f01c21;1
