@@ -12,41 +12,40 @@ import java.security.NoSuchAlgorithmException;
 public class LoginManager {
 
 	public static final String salt = "AdJn32k";
-	
+
 	private File loginFile;
-	public LoginManager(String path){
-		
+
+	public LoginManager(String path) {
+
 		loginFile = new File(path);
 	}
 
-	
-	public User login(String username,String password) throws NoSuchAlgorithmException, NumberFormatException, IOException, UserNotFoundException,PasswordInvalidException{
+	public User login(String username, String password)
+			throws NoSuchAlgorithmException, NumberFormatException,
+			IOException, UserNotFoundException, PasswordInvalidException {
 		BufferedReader rd = new BufferedReader(new FileReader(loginFile));
-		
+
 		String hashedPassword = HashCrypt.SHA1(salt + password);
+
 		
 		String line;
-		while ((line =rd.readLine()) != null){
+		while ((line = rd.readLine()) != null) {
 			String[] splitData = line.split(";");
-			if(splitData[1].equals(username)){
-				
-				if(splitData[2].equals(hashedPassword)){
-				/*Login successfully; Create new User*/
-				UserInformation userInfo = new UserInformation();
-				User newUser = new User(Integer.parseInt(splitData[0]),Integer.parseInt(splitData[3]),userInfo);
-				
+			if (splitData[1].equals(username)) {
+
+				if (splitData[2].equals(hashedPassword)) {
+					/* Login successfully; Create new User */
+					UserInformation userInfo = new UserInformation();
+					User newUser = new User(Integer.parseInt(splitData[0]),
+							Integer.parseInt(splitData[3]), userInfo);
+
 					return newUser;
-				}else{
-					throw new PasswordInvalidException();
 				}
-			}else{
-				throw new UserNotFoundException();
 			}
-			
-			}
-		return null;
+
+		}
+		
+		throw new UserNotFoundException();
 	}
-		
-		
-	
+
 }

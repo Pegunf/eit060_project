@@ -19,6 +19,10 @@ public class Record {
 		this.content = content;
 	}
 
+	public void setContent(String newContent){
+		content = newContent;
+	}
+	
 	public String getContent() {
 		return content;
 	}

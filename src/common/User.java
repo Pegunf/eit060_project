@@ -2,6 +2,11 @@ package common;
 
 public class User {
 
+	public static final int LEVEL_PATIENT = 0;
+	public static final int LEVEL_NURSE = 1;
+	public static final int LEVEL_DOCTOR = 2;
+	public static final int LEVEL_GOV = 3;
+	
 	private int level;
 	private int id;
 	private UserInformation info;
@@ -16,4 +21,7 @@ public class User {
 		return id;
 	}
 	
+	public int getLevel(){
+		return level;	
+	}
 }

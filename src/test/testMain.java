@@ -6,6 +6,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.CommandAddRecord;
+import common.CommandEditRecord;
+import common.CommandGetRecordContent;
+import common.CommandLibrary;
 import common.HashCrypt;
 import common.LoginManager;
 import common.PasswordInvalidException;
@@ -13,8 +17,6 @@ import common.Record;
 import common.User;
 import common.UserNotFoundException;
 
-import server.CommandGetRecordContent;
-import server.CommandLibrary;
 
 public class testMain {
 
@@ -30,10 +32,13 @@ public class testMain {
 				List<Record> records = new ArrayList<Record>();
 				records.add(new Record(0,0,0,0,"LOLCONNTENTNNTNETNNEAKTAENFLKEA"));
 				
-				User user;
+				User userDoc = null;
+				User userPat = null;
 				try {
-					user = loginMan.login("userpatient", "pass1");
-					System.out.println(user.getId());
+					userDoc = loginMan.login("userdoc", "pass2");
+					userPat = loginMan.login("userpatient", "pass1");
+					
+					
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 				} catch (NoSuchAlgorithmException e) {
@@ -48,15 +53,22 @@ public class testMain {
 				
 			
 				CommandLibrary lib = new CommandLibrary();
-				CommandGetRecordContent cGetRecord = new CommandGetRecordContent(records);
+				CommandGetRecordContent cGetRecord = new CommandGetRecordContent("getrecord",records);
+				CommandAddRecord cAddRecord = new CommandAddRecord("addrecord", records);
+				CommandEditRecord cEditRecord = new CommandEditRecord("editrecord", records);
+				
 				lib.addCommand(cGetRecord);
+				lib.addCommand(cAddRecord);
+				lib.addCommand(cEditRecord);
 				
-				String cmd = "getrecord 1";
+				String cmdAddRec = "addrecord 1 0 0 'Detta är lite content!'";
+				String cmdGet = "getrecord 1";
+				String cmdEditRec = "editrecord 1 'New Content'";
 				
-				System.out.println(CommandLibrary.getArguments(cmd)[0]);
-				
-				lib.parseString(CommandLibrary.getCommandString(cmd), CommandLibrary.getArguments(cmd));
-				
+				lib.parseCommand(userDoc, cmdAddRec);
+				lib.parseCommand(userPat, cmdGet);
+				lib.parseCommand(userDoc, cmdEditRec);
+				lib.parseCommand(userPat, cmdGet);
 		
 		
 	}
