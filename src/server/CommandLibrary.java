@@ -15,6 +15,23 @@ public class CommandLibrary {
 		  commands.remove(command);
 	  }
 	  
+	  public static String[] getArguments(String text){
+		String[] temp = text.split(" ");
+		
+		String[] returnArg = new String[temp.length -2];
+		int a = 0;
+		for(int i = 1;i < returnArg.length -1;i++){
+			returnArg[a] = temp[i];
+			a++;
+		}
+		return returnArg;
+	  }
+	  public static String getCommandString(String text){
+		  
+		  String[] temp = text.split(" ");
+		  return temp[0];
+	  }
+	  
 	  public void parseString(String commandString,String[] arg){
 		  boolean notFound = true;
 		for(CommandClass c : commands){
