@@ -8,6 +8,10 @@ import java.security.cert.X509Certificate;
 
 public class ServerMain {
 	public static void main(String[] args) throws Exception{
+		
+		
+		
+		
 		System.setProperty("javax.net.ssl.keyStore", "keystore");
 	    System.setProperty("javax.net.ssl.keyStorePassword", "eit060");
 	    //lite comments här lolol
