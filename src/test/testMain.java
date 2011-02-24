@@ -30,7 +30,7 @@ public class testMain {
 		LoginManager loginMan = new LoginManager("serverFiles/userdata.txt");
 	
 				List<Record> records = new ArrayList<Record>();
-				records.add(new Record(0,0,0,0,"LOLCONNTENTNNTNETNNEAKTAENFLKEA"));
+				records.add(new Record(0,0,0,0,0,"LOLCONNTENTNNTNETNNEAKTAENFLKEA"));
 				
 				User userDoc = null;
 				User userPat = null;

@@ -36,8 +36,7 @@ public class LoginManager {
 				if (splitData[2].equals(hashedPassword)) {
 					/* Login successfully; Create new User */
 					UserInformation userInfo = new UserInformation();
-					User newUser = new User(Integer.parseInt(splitData[0]),
-							Integer.parseInt(splitData[3]), userInfo);
+					User newUser = new User(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[3]),Integer.parseInt(splitData[4]), userInfo);
 
 					return newUser;
 				}

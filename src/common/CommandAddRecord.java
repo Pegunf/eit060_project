@@ -23,7 +23,7 @@ public class CommandAddRecord extends CommandClass{
 		switch(user.getLevel()){
 			case User.LEVEL_DOCTOR:
 				
-				Record newRecord = new Record(recordId, nurseId, user.getId(), patientId, content);
+				Record newRecord = new Record(recordId, nurseId, user.getId(), patientId,user.getDivision(), content);
 				records.add(newRecord);
 				
 			break;
