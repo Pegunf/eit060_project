@@ -38,11 +38,9 @@ public class LoginManager {
 					return newUser;
 				}else{
 					throw new PasswordInvalidException();
-			
 				}
 			}else{
 				throw new UserNotFoundException();
-			
 			}
 			
 			}

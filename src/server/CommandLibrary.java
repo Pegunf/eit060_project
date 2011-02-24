@@ -18,9 +18,9 @@ public class CommandLibrary {
 	  public static String[] getArguments(String text){
 		String[] temp = text.split(" ");
 		
-		String[] returnArg = new String[temp.length -2];
+		String[] returnArg = new String[temp.length -1];
 		int a = 0;
-		for(int i = 1;i < returnArg.length -1;i++){
+		for(int i = 1;i < returnArg.length;i++){
 			returnArg[a] = temp[i];
 			a++;
 		}
