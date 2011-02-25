@@ -32,10 +32,6 @@ public class CommandLogin extends CommandClass{
 			} catch (Exception e) {
 				printStream.println("An error occurred.");
 			}
-			
-		
-
-		
 		
 		
 	}

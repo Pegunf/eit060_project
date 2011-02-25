@@ -40,7 +40,6 @@ public class ClientMain {
 	    
 		BufferedReader rd = new BufferedReader(new InputStreamReader(s.getInputStream()));
 		PrintStream wr = new PrintStream(s.getOutputStream());
-		boolean logedIn = false;
 		
 		Scanner in = new Scanner(System.in);
 		

@@ -66,9 +66,6 @@ public class ServerMain {
 			cLib.addCommand(new CommandGetRecordContent("getrecord", records,wr));
 			/*COMMAND: "addrecord;'id';'nurseid';'patientid';'content'" */
 			cLib.addCommand(new CommandAddRecord("addrecord", records,wr));
-			
-			
-			cLib.addCommand(new CommandEditRecord("editrecord", records));
 			/*COMMAND: "login;'username';'password'" */
 			cLib.addCommand(new CommandLogin("login",loginMan,wr));
 			
