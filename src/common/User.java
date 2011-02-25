@@ -12,13 +12,22 @@ public class User {
 	private int id;
 	private UserInformation info;
 	
+	private boolean loggedIn;
+	
 	public User(int id, int level,int division, UserInformation info){
 		this.id = id;
 		this.level = level;
 		this.info = info;
 		this.division = division;
+		this.loggedIn = true;
+	}
+	public User(){
+		this.loggedIn = false;
 	}
 
+	public boolean areLoggedIn(){
+		return loggedIn;
+	}
 	public int getId(){
 		return id;
 	}

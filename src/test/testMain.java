@@ -26,7 +26,7 @@ public class testMain {
 	public static void main(String[] args) {
 		
 		
-		
+	/*	
 		LoginManager loginMan = new LoginManager("serverFiles/userdata.txt");
 	
 				List<Record> records = new ArrayList<Record>();
@@ -54,11 +54,11 @@ public class testMain {
 			
 				CommandLibrary lib = new CommandLibrary();
 				CommandGetRecordContent cGetRecord = new CommandGetRecordContent("getrecord",records);
-				CommandAddRecord cAddRecord = new CommandAddRecord("addrecord", records);
+				//CommandAddRecord cAddRecord = new CommandAddRecord("addrecord", records);
 				CommandEditRecord cEditRecord = new CommandEditRecord("editrecord", records);
 				
 				lib.addCommand(cGetRecord);
-				lib.addCommand(cAddRecord);
+				//lib.addCommand(cAddRecord);
 				lib.addCommand(cEditRecord);
 				
 				String cmdAddRec = "addrecord 1 0 0 'Detta är lite content!'";
@@ -70,7 +70,7 @@ public class testMain {
 				lib.parseCommand(userDoc, cmdEditRec);
 				lib.parseCommand(userPat, cmdGet);
 		
-		
+		*/
 	}
 
 }

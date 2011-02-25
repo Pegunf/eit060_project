@@ -15,36 +15,51 @@ public class CommandLibrary {
 	  }
 	  
 	  private String[] getArguments(String text){
-		String message = null;
+		ArrayList<String> messages = new ArrayList<String>();
+		
 		if (text.contains("'")) {
-			int index = text.indexOf('\'');
-			message = text.substring(index + 1, text.length() - 1);
-			text = text.substring(0, index);
+			String split[] = text.split("'");
+			text = split[0];
+			
+			for (int i = 1; i < split.length; i += 2) {
+				if(split[i] !=null) messages.add(split[i]);
+			}
 		}
 		
-		String[] temp = text.split(" ");
+//		if (text.contains("'")) {
+//			int index = text.indexOf('\'');
+//			message = text.substring(index + 1, text.length() - 1);
+//			text = text.substring(0, index);
+//		}
 		
-		int len = temp.length -1;
+		String[] temp = text.split(";");
 		
-		if (message != null) {
-			len++;
+		int len = temp.length - 1;
+		
+		if (!messages.isEmpty()) {
+			len += messages.size();
 		}
 		
 		String[] returnArg = new String[len];
 		int a = 0;
-		for(int i = 1;i < temp.length;i++){
+		
+		for(int i = 1;i < temp.length - 1;i++){
 			returnArg[a] = temp[i];
 			a++;
 		}
-		if (message != null) {
-			returnArg[len-1] = message;
+		if (!messages.isEmpty()) {
+			int i = temp.length - 1;
+			for (String s : messages) {
+				returnArg[i] = s;
+				i++;
+			}
 		}
 		
 		return returnArg;
 	  }
 	  private String getCommandString(String text){
 		  
-		  String[] temp = text.split(" ");
+		  String[] temp = text.split(";");
 		  return temp[0];
 	  }
 	  

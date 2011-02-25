@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class LoginManager {
 
@@ -15,14 +16,20 @@ public class LoginManager {
 
 	private File loginFile;
 
+	private User user;
+	
 	public LoginManager(String path) {
 
 		loginFile = new File(path);
+		user = new User();
+	}
+	
+	public User getUser(){
+		return user;	
 	}
 
-	public User login(String username, String password)
-			throws NoSuchAlgorithmException, NumberFormatException,
-			IOException, UserNotFoundException, PasswordInvalidException {
+	public void login(String username, String password)
+			throws Exception,UserNotFoundException, PasswordInvalidException {
 		BufferedReader rd = new BufferedReader(new FileReader(loginFile));
 
 		String hashedPassword = HashCrypt.SHA1(salt + password);
@@ -37,8 +44,11 @@ public class LoginManager {
 					/* Login successfully; Create new User */
 					UserInformation userInfo = new UserInformation();
 					User newUser = new User(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[3]),Integer.parseInt(splitData[4]), userInfo);
-
-					return newUser;
+					
+					user = newUser;
+					return;
+				}else{
+					throw new PasswordInvalidException();
 				}
 			}
 
