@@ -10,6 +10,7 @@ import java.net.Socket;
 import javax.net.ssl.*;
 
 import common.CommandAddRecord;
+import common.CommandDeleteRecord;
 import common.CommandEditRecord;
 import common.CommandGetRecordContent;
 import common.CommandLibrary;
@@ -68,8 +69,10 @@ public class ServerMain {
 			cLib.addCommand(new CommandAddRecord("addrecord", records,wr));
 			/*COMMAND: "login;'username';'password'" */
 			cLib.addCommand(new CommandLogin("login",loginMan,wr));
-			
-			
+			/*COMMAND: "delrecord;'id'" */
+			cLib.addCommand(new CommandDeleteRecord("delrecord", records,wr));
+			/*COMMAND: "editrecord;'id';'content'" */
+			cLib.addCommand(new CommandEditRecord("editrecord", records,wr));
 			
 			while (s.isConnected()) {
 				String inData = rd.readLine();

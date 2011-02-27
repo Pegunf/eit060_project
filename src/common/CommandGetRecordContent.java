@@ -43,6 +43,9 @@ public class CommandGetRecordContent extends CommandClass {
 					case User.LEVEL_GOV:
 						outStream.println(r.getContent());
 					break;
+					default:
+						outStream.println("Premission denied!");
+					break;
 				
 				}
 				
