@@ -16,9 +16,9 @@ import javax.net.ssl.SSLSocketFactory;
 
 public class ClientMain {
 	public static void main(String[] args) throws Exception{
-		System.setProperty("javax.net.ssl.trustStore", "clientFIles/client.truststore.jks");
+		System.setProperty("javax.net.ssl.trustStore", "clientFiles/client.truststore.jks");
 //	    System.setProperty("javax.net.ssl.trustStorePassword", "eit060");
-	    System.setProperty("javax.net.ssl.keyStore", "clientFIles/client.keystore.jks");
+	    System.setProperty("javax.net.ssl.keyStore", "clientFiles/client.keystore.jks");
 	    System.setProperty("javax.net.ssl.keyStorePassword", "eit060");
 	    
 	    SSLSocketFactory ssf = (SSLSocketFactory) SSLSocketFactory.getDefault();
@@ -27,6 +27,7 @@ public class ClientMain {
 	    SSLSession session = ((SSLSocket) s).getSession();
 	    Certificate[] cchain = session.getPeerCertificates();
 	    
+	    //Printing out information about certificates and the sessionen
 	    System.out.println("The Certificates used by peer");
 	    for (int i = 0; i < cchain.length; i++) {
 	      System.out.println(((X509Certificate) cchain[i]).getSubjectDN());
@@ -43,6 +44,8 @@ public class ClientMain {
 		
 		Scanner in = new Scanner(System.in);
 		
+		
+		//Scanning console for commands to send while connected and printing out the response
 			while(s.isConnected()){
 				wr.println(in.next());
 				System.out.println(rd.readLine());

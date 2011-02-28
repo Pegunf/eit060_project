@@ -9,17 +9,6 @@ import java.net.Socket;
 
 import javax.net.ssl.*;
 
-import common.CommandAddRecord;
-import common.CommandDeleteRecord;
-import common.CommandEditRecord;
-import common.CommandGetRecordContent;
-import common.CommandLibrary;
-import common.CommandLogin;
-import common.LoginManager;
-import common.PasswordInvalidException;
-import common.Record;
-import common.User;
-import common.UserNotFoundException;
 
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
@@ -43,6 +32,8 @@ public class ServerMain {
 			Socket s = ss.accept();
 			SSLSession session = ((SSLSocket) s).getSession();
 			Certificate[] cchain = session.getLocalCertificates();
+			
+			//Printing out information about certificates and the sessionen
 			for (int i = 0; i < cchain.length; i++) {
 		        System.out.println(((X509Certificate) cchain[i]).getSubjectDN());
 		      }
@@ -58,22 +49,21 @@ public class ServerMain {
 
 			List<Record> records = new ArrayList<Record>();
 			
-			Record testRecord1 = new Record(0,2,1,0,0,"LITE CONTNENTT!!!");
+			//Adds a testrecord the the record collection
+			Record testRecord1 = new Record(0,2,1,0,0,"LITE CONTENT!!!");
 			records.add(testRecord1);
 			
 			LoginManager loginMan = new LoginManager("serverFiles/userdata.txt");
 			CommandLibrary cLib = new CommandLibrary();
-			/*COMMAND: "getrecord;'id'" */
+			
+			//Adds all commands to the library
 			cLib.addCommand(new CommandGetRecordContent("getrecord", records,wr));
-			/*COMMAND: "addrecord;'id';'nurseid';'patientid';'content'" */
 			cLib.addCommand(new CommandAddRecord("addrecord", records,wr));
-			/*COMMAND: "login;'username';'password'" */
 			cLib.addCommand(new CommandLogin("login",loginMan,wr));
-			/*COMMAND: "delrecord;'id'" */
 			cLib.addCommand(new CommandDeleteRecord("delrecord", records,wr));
-			/*COMMAND: "editrecord;'id';'content'" */
 			cLib.addCommand(new CommandEditRecord("editrecord", records,wr));
 			
+			//Parsning indata as commands while connected
 			while (s.isConnected()) {
 				String inData = rd.readLine();
 				cLib.parseCommand(loginMan.getUser(), inData);
