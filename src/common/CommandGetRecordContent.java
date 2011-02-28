@@ -18,6 +18,8 @@ public class CommandGetRecordContent extends CommandClass {
 	public void handleCommand(User user,String[] arg) {
 	
 		try{
+			if(user.areLoggedIn()){
+			
 		int recordId = Integer.parseInt(arg[0]);
 		
 		for(Record r : records){
@@ -52,6 +54,9 @@ public class CommandGetRecordContent extends CommandClass {
 			}
 		
 		}
+			}else{
+				outStream.println("Not logged in!");
+			}
 		}catch(Exception e){
 			outStream.println("An error occurred!");
 		}

@@ -16,7 +16,9 @@ public class CommandDeleteRecord extends CommandClass{
 
 	@Override
 	protected void handleCommand(User user, String[] arg) {
+		
 		try{
+			if(user.areLoggedIn()){
 			int recordId = Integer.parseInt(arg[0]);
 			Iterator<Record> itr = records.iterator();
 			while(itr.hasNext()){
@@ -37,9 +39,13 @@ public class CommandDeleteRecord extends CommandClass{
 				}
 			
 			}
+			}else{
+				outStream.println("Not logged in!");
+			}
 			}catch(Exception e){
 				outStream.println("An error occurred!");
 			}
+		
 	}
 
 }
