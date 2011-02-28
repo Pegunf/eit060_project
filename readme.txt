@@ -1,56 +1,56 @@
----- Programmet
+ï»¿---- Programmet
 
-Systemet består av två program: Ett klientprogram och ett serverprogram.
+Systemet bestÃ¥r av tvÃ¥ program: Ett klientprogram och ett serverprogram.
 
-Först startar man serverprogrammet därefter klientprogrammet.
-När anslutningen är upprätthållen kan man börja skicka kommandon som servern ska utföra.
+FÃ¶rst startar man serverprogrammet dÃ¤refter klientprogrammet.
+NÃ¤r anslutningen Ã¤r upprÃ¤tthÃ¥llen kan man bÃ¶rja skicka kommandon som servern ska utfÃ¶ra.
 
 ---- Kommandon
 -- Logga in
 login;'username';'password'
--- Lägga till ett record
+-- LÃ¤gga till ett record
 addrecord;'recordid';'nurseid';'patientid';'content'
 -- Ta bort ett record
 delrecord;'recordid'
 -- Editera ett record
 editrecord;'recordid';'newcontent'
--- Hämta record information
+-- HÃ¤mta record information
 getrecord;'recordid'
 
----- Användare
-Där finns 4 olika användare med 4 olika rättigheter registerade, alla i samma division.
-Användar informationen finns sparad i userdata.txt i serverFiles med följande format:
+---- AnvÃ¤ndare
+DÃ¤r finns 4 olika anvÃ¤ndare med 4 olika rÃ¤ttigheter registerade, alla i samma division.
+AnvÃ¤ndar informationen finns sparad i userdata.txt i serverFiles med fÃ¶ljande format:
 userid;username;sha-1(password+salt);userlevel;divisionid
 
-Användarnamn	Lösenord	Behörighet
+AnvÃ¤ndarnamn	LÃ¶senord	BehÃ¶righet
 --------------------------------------------------
-userpatient		pass		Patients behörighet			
-userdoctor		pass		Doktors behörighet
-usernurse		pass		Sjusköterska behörighet
-usergov			pass		Statlig myndighets behörighet
+userpatient		pass		Patients behÃ¶righet			
+userdoctor		pass		Doktors behÃ¶righet
+usernurse		pass		SjuskÃ¶terska behÃ¶righet
+usergov			pass		Statlig myndighets behÃ¶righet
 
 ------ Packet
 ---- client
 -- ClientMain
-Huvudklassen med main metoden för att köra server programmet
+Huvudklassen med main metoden fÃ¶r att kÃ¶ra server programmet
 ---- server
 --ServerMain
-Huvudklassen med main metoden för att köra server programmet
+Huvudklassen med main metoden fÃ¶r att kÃ¶ra server programmet
 -- CommandClass
-En superklass för alla kommandoklasser (Klasserna som startar på "Command").
+En superklass fÃ¶r alla kommandoklasser (Klasserna som startar pÃ¥ "Command").
 -- CommandLibrary
-Hanterar parsandet av kommandosträng för att sedan utföra det specefika kommandot.
+Hanterar parsandet av kommandostrÃ¤ng fÃ¶r att sedan utfÃ¶ra det specefika kommandot.
 -- HashCrypt
-Innehåller statiska metoder för kryptering och hashning.
+InnehÃ¥ller statiska metoder fÃ¶r kryptering och hashning.
 -- LoginManager
-Håller koll på user och login processen.
+HÃ¥ller koll pÃ¥ user och login processen.
 -- Record
-Innehåller information om en record, som tex. innehåll,nurseid och doktorid.
+InnehÃ¥ller information om en record, som tex. innehÃ¥ll,nurseid och doktorid.
 -- User
-Innehåller informatioon om en User, som tex. userid, userlevel och UserInformation klassen.
+InnehÃ¥ller informatioon om en User, som tex. userid, userlevel och UserInformation klassen.
 -- UserInformation
-Finns där för ha övrig implementering av övrig information om användaren.
+Finns dÃ¤r fÃ¶r ha Ã¶vrig implementering av Ã¶vrig information om anvÃ¤ndaren.
 -- PasswordInvalidException
-Exception då lösenordet är fel.
+Exception dÃ¥ lÃ¶senordet Ã¤r fel.
 -- UserNotFoundException
-Exception då användaren inte kan hittas.
+Exception dÃ¥ anvÃ¤ndaren inte kan hittas.
